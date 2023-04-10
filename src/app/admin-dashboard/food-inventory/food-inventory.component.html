@@ -1,0 +1,63 @@
+
+<br />
+<br />
+<br />
+<div class="flex justify-center items-center">
+  <div class="mb-3 xl:w-96">
+    <div
+      class="input-group relative flex flex-wrap items-stretch w-full mb-4 rounded"
+    >
+      <input
+        (keyup)="onSearch($event)"
+        type="search"
+        class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="button-addon2"
+      />
+      <span
+        class="input-group-text flex items-center px-3 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded"
+        id="basic-addon2"
+      >
+      </span>
+      <div class="space-between">
+       <app-add-item-button link="/addfood"></app-add-item-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="sm:flex sm:flex-col lg:grid lg:grid-cols-3 md:grid md:grid-cols-3">
+  <div
+    class="rounded-lg shadow-lg bg-white max-w-sm m-2"
+    *ngFor="let data of allFood"
+  >
+    <div class="w-full h-60 object-contain overflow-hidden">
+      <img class="rounded-t-lg object-fill w-[100%] lg:h-[80%] " [src]="data.attributes.ImgUrl" alt="" />
+    </div>
+     
+    
+    <div class="flex justify-between p-6">
+      <div>
+        <h5 class="text-gray-900 text-xl font-medium mb-2">
+          {{ data.attributes.FoodName }}
+        </h5>
+        <h5><i class="bi bi-currency-rupee"></i>{{data.attributes.Price}}</h5>
+      </div>
+      <div>
+        <a routerLink="/updatefood/{{data.id}}"
+        
+          class="m-2 text-cyan-700 border border-cyan-700 hover:bg-cyan-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-centerdark:text-blue-500"
+          ><fa-icon class="fa-sm"  [icon]="editbutton" > </fa-icon
+        ></a>
+
+        <a
+          class="text-cyan-700 border border-cyan-700 hover:bg-cyan-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-centerdark:text-blue-500"
+          (click)="deleteFood(data.id)"
+          ><fa-icon class="fa-sm" [icon]="deletebutton"> </fa-icon
+        ></a>
+      </div>
+    </div>
+  </div>
+</div>
